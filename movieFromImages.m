@@ -11,7 +11,7 @@ function movieFromImages
 path2dir = 'C:\Users\Gardner\Documents\GitHub\movieFromImages\images';
 
 % get all the file names inside the specified directory 
-[fileNames,L] = getFileNames(path2dir);
+[fileNames,L] = getFileNames(path2dir); 
 
 % prepare to make a video file
 writerObj = VideoWriter('timelapse.avi');
@@ -26,11 +26,12 @@ set(gca,'nextplot','replacechildren');
 set(gcf,'Renderer','zbuffer');
 
 
-for ii = 1: 10,
+for ii = 1: L,
     imshow([path2dir,'\',fileNames{ii}]);
     axis image
     frame = getframe(hfig);
     writeVideo(writerObj,frame);
+    fprintf('images %u out of %u or %.2f percent', ii, L, ii/L*100)
 end
 % 
 close(writerObj);
@@ -82,7 +83,7 @@ function [fileNames,L] = getFileNames(pathName)
 % JILA, Dept. of Physics, 440 UCB, Boulder, CO 80309
 % email address: dennis.gardner@colorado.edu 
 % Website: http://jila.colorado.edu/kmgroup/
-% June 2013; Last revision: 18-Oct-2013
+% June 2013; Last revision: 01-Jan-2017;
 
 listing = dir(pathName);
 
@@ -95,6 +96,8 @@ for x=3:L
    fileNames{x-2} = listing(x,1).name;
 
 end
+
+L = L - 2; 
 
 end
 
