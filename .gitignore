@@ -3,3 +3,6 @@ images\
 
 # ignore JPEG images
 *.jpg
+
+# ignore Audio Video Interleaved movies
+*.avi
