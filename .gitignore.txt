@@ -1,0 +1,5 @@
+# ignore the files in the directory images
+images\
+
+# ignore JPEG images
+*.jpg
